@@ -1,4 +1,3 @@
-FROM python:3.10
-ADD bot.py. db.py.
-RUN pip install nextcord dotenv psycopg2-binary
-CMD ["python3" "bot.py"]
+FROM python:latest
+RUN pip3 install nextcord psycopg2-binary dotenv
+CMD ["python3", "bot.py"]
