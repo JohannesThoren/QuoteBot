@@ -8,8 +8,6 @@ from nextcord import SlashOption, Embed
 
 load_dotenv()
 
-TESTING_GUILD_ID = 884435641268572200  # Replace with your guild ID
-
 bot = commands.Bot()
 
 
@@ -18,7 +16,7 @@ async def on_ready():
     print(f'We have logged in as {bot.user}')
 
 
-@bot.slash_command(name="quote", description="quote a person", guild_ids=[TESTING_GUILD_ID])
+@bot.slash_command(name="quote", description="quote a person")
 async def quote(interaction: nextcord.Interaction,
                 quote: str = SlashOption(description="quote string"),
                 person: str = SlashOption(description="the person beeing quoted"),
