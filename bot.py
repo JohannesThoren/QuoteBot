@@ -30,8 +30,10 @@ async def quote(interaction: nextcord.Interaction,
 @bot.slash_command(name="get_quotes", description="Get the quotes from a specific person")
 async def get_quotes(interaction: nextcord.Interaction, person: str = SlashOption(description="the person to get quotes from"),):
     embed = nextcord.Embed(title=f"{person}", description=f"this is all quotes form {person}", color=0x000ff)
+    text = ""
     for (quote, person, year) in db.get_quotes_from_person(person):
-        embed.add_field(name=f"quote from {person}, {year}", value=quote, inline=False)
+        text = f"{text}```\"{quote}\", {year}```"
+    embed.add_field(name=f"The quotes", value=text, inline=False)
     await interaction.send(embed=embed)
 
 

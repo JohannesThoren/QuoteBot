@@ -1,8 +1,11 @@
+import os
+
 import psycopg2
 from psycopg2 import Error
-
+from dotenv import load_dotenv
+load_dotenv()
 try:
-    connection = psycopg2.connect("host=lgjt.xyz dbname=Quotebot user=postgres password=Nzxecutp1!")
+    connection = psycopg2.connect(f"host={os.getenv('DATABASE_HOST')} dbname={os.getenv('DATABASE_NAME')} user={os.getenv('DATABASE_USER')} password={os.getenv('DATABASE_PASS')}")
     # Create a cursor to perform database operations
     cursor = connection.cursor()
 
