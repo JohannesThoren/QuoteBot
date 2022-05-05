@@ -22,7 +22,7 @@ async def quote(interaction: nextcord.Interaction,
                 person: str = SlashOption(description="the person beeing quoted"),
                 year: str = SlashOption(description="the year the person said the quote")):
     db.add_quote_to_db(quote.lower(), person.lower(), year)
-    await interaction.send(f"{interaction.user} added: ```\"{quote}\" - {person}, {year}```")
+    await interaction.send(f"{interaction.user} added: ```fix\"{quote}\" - {person}, {year}```")
 
 
 @bot.slash_command(name="get_quotes", description="Get the quotes from a specific person")
@@ -30,7 +30,7 @@ async def get_quotes(interaction: nextcord.Interaction, person: str = SlashOptio
     embed = nextcord.Embed(title=f"{person}", description=f"this is all quotes form {person}", color=0x000ff)
     text = ""
     for (quote, person, year) in db.get_quotes_from_person(person):
-        text = f"{text}```\"{quote}\", {year}```"
+        text = f"{text}\n```fix\"{quote}\", {year}```"
     embed.add_field(name=f"The quotes", value=text, inline=False)
     await interaction.send(embed=embed)
 
