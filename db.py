@@ -34,13 +34,11 @@ except (Exception, Error) as error:
     print(error)
 
 def get_quotes_from_person(person):
-    cursor.execute("ROLLBACK")
     connection.commit()
     cursor.execute(f"SELECT * FROM quotes WHERE person = '{person.lower()}'")
     return cursor.fetchall()
 
 def add_quote_to_db(quote, person, year):
-    cursor.execute("ROLLBACK")
     connection.commit()
     cursor.execute("""INSERT INTO quotes (quote, person, year) VALUES (%s, %s, %s)""", (quote, person, year))
     connection.commit()
